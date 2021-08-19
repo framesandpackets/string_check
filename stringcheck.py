@@ -22,7 +22,7 @@ string = input("\n Enter string you would like to check: ")   #calls for user in
 
 print ("-------------------------------------------------------------")
 
-def string_checker():
+def string_checker():		#string checker function
 	quote_match = re.findall('"([^"]*)"',string)	#regex pattern for double quotes and text between quotes
 	is_match = bool(quote_match)		#returns boolean value for regex call
 	num_range = re.findall('[0-13]', string)      #regex pattern for intergers in range 1-13 in string
@@ -39,8 +39,9 @@ def string_checker():
 		print("\nYour string uses double quotation marks")
 	else:
 		print("\nYour string is not using double quotation marks")
+	if string[-1] != ".":		#checking for period anywhere but at the end on the string
+		print("\nYou have used a period character in the string somewhere other than finishing the sentence")
 
-string_checker()
+string_checker()     #calling function
 
 print("--------------------------------------------------------------")
-
