@@ -14,9 +14,6 @@ def string_checker():		#string checker function
 	is_match = bool(quote_match)		#returns boolean value for regex call
 	num_range = re.match(r'[0-9][0-2]', string)      #regex match pattern for intergers in range 1-12 in string using groupings
 	bool_num = bool(num_range)
-#	pattern = re.compile(r'[.]$')		#compiling/loading regular expression for fullstop at end of string
-#	matched_fullstop = pattern.finditer(string)		#findering iterations of regex pattern above
-#	bool_fullstop = bool(matched_fullstop)
 	if string[0].isupper(): 		#checking string for capital at start
 		print("Test Passed: Captial letter used at start of string")
 	else:
@@ -36,6 +33,9 @@ def string_checker():		#string checker function
 		print("\nTest Failed: You have numbers below 13 that are not spelled out")
 	else:
 		print("\nTest Passed: All numbers below 13 have been spelled out")
+	if "." in string[0:-2]:
+		print("\nTest Failed: You have used a full stop somewhere other than end of the string")
+
 string_checker()     #calling function
 
 print("--------------------------------------------------------------")
