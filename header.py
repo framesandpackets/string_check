@@ -1,4 +1,5 @@
-print("""\n                [STRING CHECK APPLICATION]
+def greeting():
+    print("""\n                [STRING CHECK APPLICATION]
 
 How to use: Type valid/invalid string when prompted in terminal.
 
