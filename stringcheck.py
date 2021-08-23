@@ -1,41 +1,42 @@
 #!/usr/bin/env python
 
-import re		#importing regex module
-import header as welcome		#import module from local dir
+import re
 
-welcome.greeting()		#calling welcome/landing module
+def caps_check(string):         #function to check first character in string in captial
+    if string[0].isupper():
+        return "Test Passed"
+    else:
+        return "Test Failed"
 
-string = input("\n Enter string you would like to check: ")   #calls for user input of string
+def period_check(string):       #function to check last element in string is '.'
+    if string[-1] == '.':
+        return "Test Passed"
+    else:
+        return "Test Failed"
 
-print ("-------------------------------------------------------------")
+def misplaced_period_check(string):     #function to check string for '.' from start to second last character
+    if "." in string[0:-2]:
+        return "Test Failed"
+    else:
+        return "Test Passed"
 
-def string_checker():		#string checker function
-	quote_match = re.match(r'"\w+"',string)	#regex pattern for double quotes and text between quotes
-	is_match = bool(quote_match)		#returns boolean value for regex call
-	num_range = re.match(r'[0-9][0-2]', string)      #regex match pattern for intergers in range 1-12 in string using groupings
-	bool_num = bool(num_range)
-	if string[0].isupper(): 		#checking string for capital at start
-		print("Test Passed: Captial letter used at start of string")
-	else:
-		print("Test Failed: Captial letter not used at start of string")
+def number_check(string):  #function to number in string <= 12
+    num_range = re.search(r'\d+', string) #regex search for one or more digits in string
+    bool_num = bool(num_range)     #True/False return on regex search
+    if num_range == None:
+        return "Test Passed"
+    if bool_num == True:
+        num_int = int(string[num_range.start():num_range.end()])       #parsing regex return and returning integer value
+        match_int = int(num_int)
+        if match_int <= 12:
+            return "Test Failed"
+        else:
+            return "Test Passed"
 
-	if string[-1] == ".":
-		print("\nTest Passed: You have used a fullstop at the end of string")
-	else:
-		print("\nTest Failed: You string does end with a fullstop")
-
-	if is_match == True:
-		print("\nTest Passed: You have used double quotes in your string")
-	else:
-		print("\nTest Failed: You have not used double quotes in your string")
-
-	if bool_num == True:
-		print("\nTest Failed: You have numbers below 13 that are not spelled out")
-	else:
-		print("\nTest Passed: All numbers below 13 have been spelled out")
-	if "." in string[0:-2]:
-		print("\nTest Failed: You have used a full stop somewhere other than end of the string")
-
-string_checker()     #calling function
-
-print("--------------------------------------------------------------")
+def quote_check(string):
+    quote_count = string.count('''"''')        # count the amount of quote marks in string
+    modulo_check = quote_count % 2           # find if diving the count by 2 has a remainder
+    if modulo_check != 0:
+        return("Test Failed")
+    else:
+        return("Test Passed")
